@@ -10,37 +10,27 @@
   5. have fun.
 */
 
-
 let dancer;
-
 function setup() {
   // no adjustments in the setup function needed...
   let canvas = createCanvas(windowWidth, windowHeight);
   canvas.parent("p5-canvas-container");
-
   // ...except to adjust the dancer's name on the next line:
   dancer = new Dancer(width / 2, height / 2);
 }
-
 function draw() {
   // you don't need to make any adjustments inside the draw loop
   background(0);
-  drawFloor(); // for reference only
-
   dancer.show();
-  dancer.move();
 
 }
-
-
-
 // You only code inside this class.
 // Start by giving the dancer your name, e.g. LeonDancer.
 class Dancer {
-  constructor() {
-    this.x = width / 2;
-    this.y = height / 2;
-    this.s = 100;
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.s = 40;
     this.angle = 0
     this.speed = 2
     // add properties for your dancer here:
@@ -49,44 +39,39 @@ class Dancer {
     //..
   }
   show() {
+    let a = sin(frameCount * 0.05);
+    a = map(a, -1, 1, -PI / 40, PI / 50);
     push()
+    rotate(a)
     translate(this.x, this.y)
 
     //arms
     push()
-    stroke(255)
     strokeWeight(3)
+    stroke(255)
+
     line(-this.s * 0.25, this.s * 0.9, -this.s * 0.7, this.s * 0.6 + 20 * sin(frameCount * 0.05))
     line(this.s * 0.25, this.s * 0.9, this.s * 0.7, this.s * 0.6 + 20 * sin(frameCount * 0.05))
     pop()
-
     push()
     fill(255)
     translate(-this.s * 0.7, this.s * 0.6)
     circle(0, 0 + 20 * sin(frameCount * 0.05), this.s * 0.1)
     pop()
-
     push()
     fill(255)
     translate(this.s * 0.7, this.s * 0.6)
     circle(0, 0 + 20 * sin(frameCount * 0.05), this.s * 0.1)
     pop()
 
-    pop()
-
-
     //leg
     push()
-
     fill(255)
     strokeWeight(3)
     stroke(255)
-
     this.angle = sin(frameCount * 0.05);
     this.angle = map(this.angle, -1, 1, -PI / 10, PI / 3);
-
     line(-this.s * 0.15, this.s * 1.1, -this.s * 0.15, this.s * 1.5)
-
     push()
     translate(-this.s * 0.15, this.s * 1.5)
     rotate(this.angle)
@@ -94,43 +79,33 @@ class Dancer {
     // circle (0,150,10)
     circle(this.s * 0.15, this.s * 0.1, this.s * 0.1)
     pop()
-
-
     line(this.s * 0.15, this.s * 1.1, this.s * 0.15, this.s * 1.5)
-
     push()
     translate(this.s * 0.15, this.s * 1.5)
     rotate(-this.angle)
     line(0, 0, this.s * 0.15, this.s * 0.1)
     circle(this.s * 0.15, this.s * 0.1, this.s * 0.1)
     pop()
-
     pop()
-
     //body
     fill(255, 179, 0);
     noStroke()
     arc(0, this.s * 1.2, this.s * 0.7, this.s * 2, PI, 0)
-
-    //head 
+    //head
     push();
     this.angle = 2 * sin(frameCount * 0.05);
     // angle = map(angle, -1, 1, -PI / 10, PI / 10);
     rotate(this.angle)
     noStroke();
     fill(254, 27, 28);
-
     for (let a = 0; a < 2 * PI; a += PI / 8) {
       push();
       rotate(a);
       circle(this.s * 0.5, 0, this.s * 0.5);
       pop();
     }
-
     circle(0, 0, this.s);
-
     pop();
-
     //face
     push()
     fill(255)
@@ -138,63 +113,20 @@ class Dancer {
     ellipse(this.s * -0.2, 0, this.s * 0.4, this.s * 0.6)
     ellipse(this.s * 0.2, 0, this.s * 0.4, this.s * 0.6)
     pop()
-
     fill(0)
     let eye = 15 * sin(frameCount * 0.05)
     let y_eye = constrain(eye, -this.s * 0.15, this.s * 0.15)
     circle(-this.s * 0.2, y_eye, this.s * 0.3)
     circle(this.s * 0.2, y_eye, this.s * 0.3)
-
     noFill()
     strokeWeight(2)
     stroke(0)
     arc(0, this.s * 0.4, this.s * 0.2, this.s * 0.3, 0, PI)
-
     pop()
-
     // update properties here to achieve
     // your dancer's desired moves and behaviour
   }
-  move() {
-    let a = sin(frameCount * 0.05);
-    a = map(a, -1, 1, -PI / 10, PI / 20);
-    push()
-    // translate(this.x, this.y)
-    rotate(a)
-
-
-
-
-    // the push and pop, along with the translate 
-    // places your whole dancer object at this.x and this.y.
-    // you may change its position on line 19 to see the effect.
-
-    push();
-    translate(this.x, this.y);
-
-    // ******** //
-    // ⬇️ draw your dancer from here ⬇️
-
-
-
-
-
-
-    // ⬆️ draw your dancer above ⬆️
-    // ******** //
-
-    // the next function draws a SQUARE and CROSS
-    // to indicate the approximate size and the center point
-    // of your dancer.
-    // it is using "this" because this function, too, 
-    // is a part if your Dancer object.
-    // comment it out or delete it eventually.
-    this.drawReferenceShapes()
-
-    pop();
-  }
-
-  //background 
+  //background
   drawReferenceShapes() {
     noFill();
     stroke(255, 0, 0);
