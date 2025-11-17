@@ -58,7 +58,6 @@ class Particle {
     this.bright = random(90, 100)
     this.speedX = map(this.s, 30, 100, 1, 0.1);
     this.speedY = map(this.s, 30, 100, 0.02, 0.005);
-    // this.d = dist(this.x, this.y, other.x, other.y);
 
 
 
