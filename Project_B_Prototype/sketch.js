@@ -46,6 +46,8 @@ class Bubble {
       imageMode(CENTER)
       image(img, this.x, this.y, 50, 60)
     } else {
+      noStroke()
+      fill(255, 70)
       circle(this.x, this.y, this.s)
     }
 
