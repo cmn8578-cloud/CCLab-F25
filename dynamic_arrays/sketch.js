@@ -4,7 +4,7 @@ let mic;
 let sound;
 
 function preload() {
-  sound = loadSound("asset/thunder.mp3");
+  sound = loadSound("assets/thunder.mp3");
 }
 
 function setup() {

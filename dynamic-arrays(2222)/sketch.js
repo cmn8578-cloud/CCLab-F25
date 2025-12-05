@@ -3,6 +3,7 @@ let n = 3;
 let mic;
 let sound;
 
+
 function preload() {
   sound = loadSound("assets/thunder.mp3");
 }

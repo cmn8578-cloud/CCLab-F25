@@ -24,7 +24,12 @@ function draw() {
   for (let i = 0; i < bubble.length; i++) {
     bubble[i].display()
     bubble[i].move()
+    if (bubble[i].isOut()) {
+      bubble.splice(i, 1)
+    }
   }
+
+
 }
 
 class Bubble {
@@ -54,12 +59,12 @@ class Bubble {
   }
 
   move() {
-    let d = dist(this.x, this.y, this.inX, this.inY)
-    this.s = map(d, 0, 200, 20, 60)
+
 
     if (mic.getLevel() >= 0.02) {
       this.y -= random(0, 5)
       this.x += random(-2, -0.5)
+      this.s += random(0.5, 2)
     }
 
     if (this.s >= 60) {
@@ -67,17 +72,12 @@ class Bubble {
       this.x += this.spX
       this.y += this.spY
     }
-
-    // if (this.x < 0 || this.x > width) {
-    //   this.spX = -this.spX
-    // }
-
-    // if (this.y < 0 || this.y > height) {
-    //   this.spY = -this.spY
-    // }
-
-
     console.log(mic.getLevel())
 
+  }
+
+  isOut() {
+    this.x < this.s / 2
+    this.y < this.s / 2
   }
 }
