@@ -58,10 +58,14 @@ function draw() {
   let vol = mic.getLevel();
   if (vol > 0.05) {
     bubble.push(new Bubble(mouseX, mouseY, 50, img[bubble.length % 9]));
+    console.log(vol)
+  }
+  if (vol > 1) {
     if (mySound1.isPlaying() == false) {
       mySound1.loop();
     }
   }
+
   for (let i = bubble.length - 1; i >= 0; i--) {
     bubble[i].display();
     bubble[i].move();
