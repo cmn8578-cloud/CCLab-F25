@@ -152,10 +152,10 @@ class Bubble {
 
   popSound() {
     if (this.s > this.s0 * 2) {
-      if (mySound.isPlaying() == false) {
-        mySound.play();
-      }
+      // if (mySound.isPlaying() == false) {
+      mySound.play();
     }
+    // }
   }
 }
 
