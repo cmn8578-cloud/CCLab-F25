@@ -678,7 +678,6 @@ class Dancer {
   }
 
 }
-
 class Crab {
   // constructor function
   constructor(startX, startY, s) {
