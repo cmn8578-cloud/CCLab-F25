@@ -2,11 +2,16 @@ let bubble = []
 let mic;
 let n = 9;
 let img = [];
+
+let img1 = [];
 let mySound
+let mySound1
 let tree = []
-let myCharacter
+let me
 let myCreature;
 
+
+let blowing = false;
 
 function preload() {
   //img = loadImage("assets/0.png");
@@ -24,7 +29,7 @@ function preload() {
 }
 
 function setup() {
-  let canvas = createCanvas(800, 500);
+  let canvas = createCanvas(windowWidth, windowHeight);
   canvas.parent("p5-canvas-container");
   canvas.mousePressed(userStartAudio);
   mic = new p5.AudioIn();
@@ -35,10 +40,9 @@ function setup() {
   tree[0] = new Tree(width / 2 + 250, height / 2 + 40, 8, color(40, 120, 20));
   tree[1] = new Tree(width / 2 + 310, height / 2 + 100, 6, color(100, 200, 80));
 
-  myCharacter = new Character(200, 100, 0.5); // x, y, scale
+  me = new Me(200, 100, 0.5); // x, y, scale
   // myCreature = new Creature(200, 200, 1); // position + scale
 }
-
 
 function draw() {
   background(220);
@@ -49,6 +53,7 @@ function draw() {
   rect(width / 2, height - 450, 800, 800)
   fill(49, 104, 52)
   rect(width / 2, height - 50, 800, 100)
+
   for (let i = 0; i < tree.length; i++) {
     tree[i].display();
     tree[i].move();
@@ -56,25 +61,29 @@ function draw() {
 
   //bubble
   let vol = mic.getLevel();
-  if (vol > 0.05) {
-    bubble.push(new Bubble(mouseX, mouseY, 50, img[bubble.length % 9]));
-    console.log(vol)
-  }
-  if (vol > 1) {
-    if (mySound1.isPlaying() == false) {
-      mySound1.loop();
+  if (vol > 0.05 && blowing == false) {
+    blowing = true;
+    for (let i = 0; i < 6; i++) {
+      bubble.push(new Bubble(mouseX, mouseY, random(20, 60), img[bubble.length % 9]));
     }
+    console.log(vol)
+
+    // if (mySound1.isPlaying() == false) {
+    //   mySound1.loop();
+    // }
+  }
+  if (vol <= 0.05) {
+    blowing = false;
   }
 
   for (let i = bubble.length - 1; i >= 0; i--) {
     bubble[i].display();
     bubble[i].move();
     if (bubble[i].popBubble() == true) {
-      bubble[i].popSound()
+      // bubble[i].popSound()
       bubble.splice(i, 1)
     }
   }
-
   //bubble stick
   // push();
   // translate(width / 2, height / 2);
@@ -94,7 +103,7 @@ function draw() {
   imageMode(CENTER)
   image(img1, mouseX, mouseY, 300, 170)
 
-  myCharacter.display();
+  me.display();
   // myCreature.display();
 
 }
@@ -121,11 +130,11 @@ class Bubble {
     fill(255, 120);
     noStroke();
     imageMode(CENTER);
-    image(this.img, this.x, this.y, this.s * 2, this.s * 1.2)
+    image(this.img, this.x, this.y, this.s, this.s)
 
-    if (mySound.isPlaying() == false) {
-      mySound.play();
-    }
+    // if (mySound.isPlaying() == false) {
+    //   mySound.play();
+    // }
     // circle(this.x, this.y, this.s);
     // if (this.s < this.s0 * 1.5) {
     //   circle(this.x, this.y, this.s);
@@ -137,7 +146,7 @@ class Bubble {
   move() {
     this.y -= this.spY;
     this.x += this.spX;
-    this.s += 0.4
+    this.s += 0.3
   }
   popBubble() {
     if (this.s > this.s0 * 2) {
@@ -154,13 +163,13 @@ class Bubble {
   //   }
   // }
 
-  popSound() {
-    if (this.s > this.s0 * 2) {
-      // if (mySound.isPlaying() == false) {
-      mySound.play();
-    }
-    // }
-  }
+  // popSound() {
+  //   if (this.s > this.s0 * 2) {
+  //     // if (mySound.isPlaying() == false) {
+  //     mySound.play();
+  //   }
+  //   // }
+  // }
 }
 
 class Tree {
@@ -193,18 +202,18 @@ class Tree {
   }
 }
 
-class Character {
-
+class Me {
   constructor(x, y, scale = 1) {
-    this.x = x;       // x position
-    this.y = y;       // y position
-    this.s = scale;   // scale factor
+    this.x = x;
+    this.y = y;
+    this.s = scale;
+    this.sp = 2;
   }
 
   display() {
     push();
     translate(this.x, this.y);
-    scale(this.s); // apply scaling
+    scale(this.s);
     // bottom hair
     fill(156, 102, 68);
     noStroke();
@@ -291,6 +300,9 @@ class Character {
     ellipse(255, 283.5, 25, 6);
 
     pop();
+  }
+
+  move() {
 
   }
 }
