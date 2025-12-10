@@ -137,7 +137,7 @@ function draw() {
     y = lerp(y, midY, 0.2);
     //create bubbles
     let vol = mic.getLevel();
-    if (vol > 0.05 && blowing == false) {
+    if (vol > 0.04 && blowing == false) {
       blowing = true;
       for (let i = 0; i < 4; i++) {
         let normalX = width - x;
