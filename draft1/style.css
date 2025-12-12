@@ -22,8 +22,6 @@ body {
 
 .box-3 {
   background-color: rgb(29, 223, 223);
-  width: 80%;
-  margin: auto;
 }
 
 .flex-container {
@@ -52,6 +50,11 @@ body {
 }
 
 .canvas2Frame {
+  width: 100% !important;
+  height: 100%;
+}
+
+.canvas3Frame {
   width: 100% !important;
   height: 100%;
 }

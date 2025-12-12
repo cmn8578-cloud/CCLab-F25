@@ -764,17 +764,8 @@ class Crab {
     strokeWeight(1)
     ellipse(0, 0, this.s * 1.5, this.s * 0.75);
     arc(0, 0, this.s * 0.5, this.s * 0.5, 0, PI)
-
     pop();
-
-
   }
-
-
-
-
-
-
 }
 
 

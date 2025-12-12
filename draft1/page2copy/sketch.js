@@ -46,7 +46,7 @@ function preload() {
 }
 
 function setup() {
-  let canvas = createCanvas(640, 480);
+  let canvas = createCanvas(windowWidth, windowHeight);
   canvas.id("p5-canvas");
   canvas.parent("p5-canvas-container");
   canvas.mousePressed(userStartAudio);
@@ -323,26 +323,26 @@ class Me {
     rect(280, 430, 40, 80); // R
 
     //Left hand
-    push()
-    stroke(237, 224, 212);
-    fill(237, 224, 212);
-    strokeWeight(9);
-    translate(this.armLx1, this.armLy1);
-    rotate(this.angle);
-    line(0, 0, this.armLx2 - this.armLx1, this.armLy2 - this.armLy1);
-    circle(this.armLx2 - this.armLx1, this.armLy2 - this.armLy1, 15)
-    pop()
+    // push()
+    // stroke(237, 224, 212);
+    // fill(237, 224, 212);
+    // strokeWeight(9);
+    // translate(this.armLx1, this.armLy1);
+    // rotate(this.angle);
+    // line(0, 0, this.armLx2 - this.armLx1, this.armLy2 - this.armLy1);
+    // circle(this.armLx2 - this.armLx1, this.armLy2 - this.armLy1, 15)
+    // pop()
 
-    //Right hand
-    push();
-    stroke(237, 224, 212);
-    fill(237, 224, 212);
-    strokeWeight(9);
-    translate(this.armRx1, this.armRy1);
-    rotate(-this.angle);
-    line(0, 0, this.armRx2 - this.armRx1, this.armRy2 - this.armRy1);
-    circle(this.armRx2 - this.armRx1, this.armRy2 - this.armRy1, 15);
-    pop();
+    // //Right hand
+    // push();
+    // stroke(237, 224, 212);
+    // fill(237, 224, 212);
+    // strokeWeight(9);
+    // translate(this.armRx1, this.armRy1);
+    // rotate(-this.angle);
+    // line(0, 0, this.armRx2 - this.armRx1, this.armRy2 - this.armRy1);
+    // circle(this.armRx2 - this.armRx1, this.armRy2 - this.armRy1, 15);
+    // pop();
 
     // shirt
     fill(0);

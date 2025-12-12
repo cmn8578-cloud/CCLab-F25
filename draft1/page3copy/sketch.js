@@ -11,10 +11,10 @@ function preload() {
 }
 
 function setup() {
-  let canvas = createCanvas(600, 400);
+  let canvas = createCanvas(windowWidth, windowHeight);
   canvas.parent("p5-canvas-container");
   x1 = 0;
-  x2 = -img.width;
+  x2 = -windowWidth;
   // x2 = -2 * img.width;
 }
 function draw() {
@@ -22,11 +22,11 @@ function draw() {
 
   push()
   imageMode(CENTER)
-  image(img1, width / 2, 100, 300, 100);
+  image(img1, width / 2, 100, 500, 200);
   pop()
 
-  image(img, x1, 170);
-  image(img, x2, 170);
+  image(img, x1, 170, windowWidth, img.height * windowWidth / img.width);
+  image(img, x2, 170, windowWidth, img.height * windowWidth / img.width);
   // image(img, x2, 170);
   // pop();
 
@@ -54,19 +54,19 @@ function draw() {
   }
   if (right) {
     if (x1 > width) {
-      x1 = x2 - img.width;
+      x1 = x2 - width;
     }
     if (x2 > width) {
-      x2 = x1 - img.width;
+      x2 = x1 - width;
     }
   }
 
   if (left) {
     if (x1 < 0) {
-      x2 = x1 + img.width;
+      x2 = x1 + width;
     }
     if (x2 < 0) {
-      x1 = x2 + img.width;
+      x1 = x2 + width;
     }
   }
 
