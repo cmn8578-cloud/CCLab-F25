@@ -66,10 +66,10 @@ function setup() {
   mic.start();
 
   //characters 
-  me = new Me(width * 0.3, height * 0.3, 0.4);
-  worm = new Worm(width * 0.7, height * 0.6, 0.5, 0.1, color(150, 80, 200));
-  dancer = new Dancer(width * 0.2, height * 0.5, 28);
-  crab = new Crab(width * 0.9, height * 0.6, 50)
+  me = new Me(width * 0.3, height * 0.27, 0.5);
+  worm = new Worm(width * 0.7, height * 0.45, 0.7, 0.1, color(150, 80, 200));
+  dancer = new Dancer(width * 0.2, height * 0.45, 30);
+  crab = new Crab(width * 0.9, height * 0.45, 55)
 
   //clouds
   for (let i = 0; i < cloud.length; i++) {
@@ -98,7 +98,16 @@ function draw() {
   rectMode(CENTER)
   noStroke()
   fill(49, 104, 52)
-  rect(width / 2, height - (height * 0.2), width, height * 0.2)
+  rect(width / 2, height - (height * 0.2), width, height - height * 0.5)
+  textSize(15);
+  fill(255);
+  noStroke();
+  text("To blow:", width / 20, height - height / 2.5);
+  text("Press the mouse anywhere, make an OK hand sign, and blow hard 👌🏻", width / 20, height - height / 2.7);
+  text("(Tip: Make sure the tips of your index finger and thumb are very close together.)", width / 20, height - height / 2.9);
+  text("To NOT blow:", width / 20, height - height / 3.5);
+  text("Keep the tips of your index finger and thumb apart.", width / 20, height - height / 3.8);
+
 
   //displaying characters
   me.display();
@@ -519,7 +528,7 @@ class Cloud {
   }
   display() {
     push();
-    image(this.img, this.x, this.y, 150, 150); // Adjust size as needed
+    image(this.img, this.x, this.y, 200, 200); // Adjust size as needed
     pop();
   }
   move() {
