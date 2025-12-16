@@ -522,13 +522,13 @@ class Cloud {
     this.y = y;
     this.y0 = y
     this.img = img;
-    this.sp = random(0.5, 3); // Random speed for movement
+    this.sp = random(0.5, 3);
     this.spCloud = random(0.02, 0.2);
 
   }
   display() {
     push();
-    image(this.img, this.x, this.y, 200, 200); // Adjust size as needed
+    image(this.img, this.x, this.y, 200, 200);
     pop();
   }
   move() {
@@ -539,7 +539,7 @@ class Cloud {
   moveBack() {
     if (this.x > width) {
       this.x = -200
-      this.y = random(-40, 60); // Random y position at top
+      this.y = random(-40, 60);
       this.sp = random(0.5, 3)
       this.y0 = this.y
       this.spCloud = random(0.02, 0.2);

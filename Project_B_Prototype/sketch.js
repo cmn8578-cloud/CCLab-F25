@@ -28,8 +28,6 @@ function draw() {
       bubble.splice(i, 1)
     }
   }
-
-
 }
 
 class Bubble {
@@ -59,11 +57,9 @@ class Bubble {
   }
 
   move() {
-
-
     if (mic.getLevel() >= 0.02) {
       this.y -= random(0, 5)
-      this.x += random(-2, -0.5)
+      this.x += random(-2, 2)
       this.s += random(0.5, 2)
     }
 
@@ -77,7 +73,7 @@ class Bubble {
   }
 
   isOut() {
-    this.x < this.s / 2
-    this.y < this.s / 2
+    return (this.x < -this.s || this.x > width + this.s || this.y < -this.s || this.y > height + this.s)
+
   }
 }
